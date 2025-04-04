@@ -5,7 +5,7 @@ const app = express();
 
 const { PORT = 4201 } = process.env;
 
-mongoose.connect('mongodb://127.0.0.1:27017/nerdle_db') // change this
+mongoose.connect('mongodb://127.0.0.1:27017/nerdle_db')
 .then(() => {
     console.log("Connected to DB");
   })
