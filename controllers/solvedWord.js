@@ -2,7 +2,7 @@ const ForbiddenError = require("../errors/forbidden-error");
 const Item = require("../models/solvedWord");
 const { handleError } = require("../utils/errors");
 
-const createNewlySolvedWord = (req, res, next) => {
+const createNewSolvedWord = (req, res, next) => {
   const { word } = req.body;
   const owner = req.user._id;
 
@@ -33,7 +33,7 @@ const createNewlySolvedWord = (req, res, next) => {
 //     });
 // };
 
-const getThisUsersSolvedWords = (req, res, next) => {
+const getSolvedWords = (req, res, next) => {
   Item.find({})
     .then((clothingItems) => {
       res.send(clothingItems);
@@ -73,4 +73,4 @@ const getThisUsersSolvedWords = (req, res, next) => {
 //     });
 // };
 
-module.exports = { createItem, getItems, deleteItem, likeItem, unlikeItem };
+module.exports = { createNewSolvedWord, getSolvedWords};

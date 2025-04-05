@@ -25,6 +25,15 @@ const userSchema = new mongoose.Schema({
     required: [true, "password is required"],
     select: false,
   },
+  solvedWords: {
+    type: Array,
+    required: false,
+  },
+  pokemonHighScore: {
+    type: Number,
+    required: false,
+
+  }
 });
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(
