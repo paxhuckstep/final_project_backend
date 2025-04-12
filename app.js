@@ -3,7 +3,17 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+const cors = require('cors');
+
+
 const { PORT = 4201 } = process.env;
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+  credentials: true // Enable credentials (cookies, authorization headers, etc.)
+}));
 
 mongoose.connect('mongodb://127.0.0.1:27017/nerdle_db')
 .then(() => {

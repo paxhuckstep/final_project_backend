@@ -5,22 +5,21 @@ const { handleError } = require("../utils/errors");
 const ConflictError = require("../errors/conflict-error");
 
 const createUser = (req, res, next) => {
-  const { name, avatar, email, password } = req.body;
-  User.findOne({ email })
+  console.log("creaeteUser ran")
+  const { username, password } = req.body;
+  User.findOne({ username })
     .then((existingUser) => {
       if (existingUser) {
         return next(new ConflictError("E-mail unavailable"));
       }
       return bcrypt.hash(password, 8).then((hashedPassword) => {
-        User.create({ name, avatar, email, password: hashedPassword })
+        User.create({ username, password: hashedPassword })
           .then((user) => {
             const token = createJWT(user._id);
             res.send({
               user: {
                 _id: user._id,
-                name: user.name,
-                avatar: user.avatar,
-                email: user.email,
+                username: user.username,
               },
               token,
             });

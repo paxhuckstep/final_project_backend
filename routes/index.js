@@ -10,7 +10,9 @@ const {
 const NotFoundError = require("../errors/not-found-error");
 
 router.post("/signin", validateLoginAttempt, login);
-router.post("/signup", validateNewUserData, createUser);
+router.post("/signup", 
+  // validateNewUserData,
+   createUser);
 router.use("/highscore", clothingItem);
 router.use("/solvedword", solvedWord);
 router.use("/users", userRouter);
