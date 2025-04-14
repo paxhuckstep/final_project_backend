@@ -3,23 +3,23 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 30,
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    validate: {
-      validator(value) {
-        return validator.isEmail(value);
-      },
-      message: "You must enter a valid e-mail address",
-    },
-  },
+  // email: {
+  //   type: String,
+  //   required: true,
+  //   unique: true,
+  //   validate: {
+  //     validator(value) {
+  //       return validator.isEmail(value);
+  //     },
+  //     message: "You must enter a valid e-mail address",
+  //   },
+  // },
   password: {
     type: String,
     required: [true, "password is required"],
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(
-  email,
+  username,
   password
 ) {
   return this.findOne({ email })
