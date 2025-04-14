@@ -5,7 +5,7 @@ const { handleError } = require("../utils/errors");
 const ConflictError = require("../errors/conflict-error");
 
 const createUser = (req, res, next) => {
-  console.log("creaeteUser ran")
+  console.log("creaeteUser ran");
   const { username, password } = req.body;
   User.findOne({ username })
     .then((existingUser) => {
@@ -16,11 +16,10 @@ const createUser = (req, res, next) => {
         User.create({ username, password: hashedPassword })
           .then((user) => {
             const token = createJWT(user._id);
+            const userWithoutPassword = user.toObject()
+            delete userWithoutPassword.password
             res.send({
-              user: {
-                _id: user._id,
-                username: user.username,
-              },
+              user: userWithoutPassword,
               token,
             });
           })
@@ -64,8 +63,8 @@ const getCurrentUser = (req, res, next) => {
 // };
 
 const login = (req, res, next) => {
-  const { email, password } = req.body;
-  return User.findUserByCredentials(email, password)
+  const { username, password } = req.body;
+  return User.findUserByCredentials(username, password)
     .then((user) => {
       const token = createJWT(user._id);
       res.send({ token });
@@ -75,4 +74,9 @@ const login = (req, res, next) => {
     });
 };
 
-module.exports = { createUser, getCurrentUser, updateUser, login };
+module.exports = {
+  createUser,
+  getCurrentUser,
+  //  updateUser,
+  login,
+};

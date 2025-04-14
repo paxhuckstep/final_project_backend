@@ -1,15 +1,15 @@
 const router = require("express").Router();
 
-const { auth } = require("../middlewares/auth");
+// const { auth } = require("../middlewares/auth");
 
 const {
   getSolvedWords,
   createNewSolvedWord,
 } = require("../controllers/solvedWord");
-const {
-  validateCardBody,
-  validateItemId,
-} = require("../middlewares/validation");
+// const {
+//   validateCardBody,
+//   validateItemId,
+// } = require("../middlewares/validation");
 
 // router.get("/", getItems);
 // router.post("/", auth, validateCardBody, createItem);
@@ -18,7 +18,9 @@ const {
 // router.delete("/:itemId/likes", auth, validateItemId, unlikeItem);
 
 router.get("/", getSolvedWords);
-router.post("/:word", auth, validateWord, createNewSolvedWord);
+router.post("/:word",
+  //  auth, validateWord, 
+   createNewSolvedWord);
 // router.delete("/:itemId", auth, validateItemId, deleteItem);
 // router.put("/:word", auth, validateItemId, likeItem);
 // router.delete("/:itemId/likes", auth, validateItemId, unlikeItem);

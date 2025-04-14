@@ -13,7 +13,7 @@ router.post("/signin", validateLoginAttempt, login);
 router.post("/signup", 
   // validateNewUserData,
    createUser);
-router.use("/highscore", clothingItem);
+// router.use("/highscore", clothingItem);
 router.use("/solvedword", solvedWord);
 router.use("/users", userRouter);
 

@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const mainRouter = require("./routes/index");
 
 const app = express();
 
@@ -14,6 +15,10 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   credentials: true // Enable credentials (cookies, authorization headers, etc.)
 }));
+
+app.use(express.json());
+
+app.use("/", mainRouter);
 
 mongoose.connect('mongodb://127.0.0.1:27017/nerdle_db')
 .then(() => {

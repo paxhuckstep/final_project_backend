@@ -1,6 +1,6 @@
-const ForbiddenError = require("../errors/forbidden-error");
+// const ForbiddenError = require("../errors/forbidden-error");
 const Item = require("../models/solvedWord");
-const { handleError } = require("../utils/errors");
+// const { handleError } = require("../utils/errors");
 
 const createNewSolvedWord = (req, res, next) => {
   const { word } = req.body;
@@ -11,7 +11,7 @@ const createNewSolvedWord = (req, res, next) => {
       res.send({ data: item });
     })
     .catch((err) => {
-      handleError(err, res, next);
+      // handleError(err, res, next);
     });
 };
 

@@ -27,12 +27,11 @@ const userSchema = new mongoose.Schema({
   },
   solvedWords: {
     type: Array,
-    required: false,
+    default: [],
   },
   pokemonHighScore: {
     type: Number,
-    required: false,
-
+    default: 0,
   }
 });
 
