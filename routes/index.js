@@ -17,7 +17,7 @@ router.post("/signup",
    createUser);
 // router.use("/highscore", clothingItem);
 router.use("/solvedword", solvedWord);
-router.use("/users", userRouter);
+router.use("/highscore", highScore);
 
 router.use((req, res, next) => {
   return next(new NotFoundError("Router not found"));
