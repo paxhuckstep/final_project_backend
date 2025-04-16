@@ -32,14 +32,14 @@ const userSchema = new mongoose.Schema({
   pokemonHighScore: {
     type: Number,
     default: 0,
-  }
+  },
 });
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(
   username,
   password
 ) {
-  return this.findOne({ email })
+  return this.findOne({ username })
     .select("+password")
     .then((user) => {
       if (!user) {

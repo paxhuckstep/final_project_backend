@@ -16,8 +16,8 @@ const createUser = (req, res, next) => {
         User.create({ username, password: hashedPassword })
           .then((user) => {
             const token = createJWT(user._id);
-            const userWithoutPassword = user.toObject()
-            delete userWithoutPassword.password
+            const userWithoutPassword = user.toObject();
+            delete userWithoutPassword.password;
             res.send({
               user: userWithoutPassword,
               token,
@@ -63,9 +63,11 @@ const getCurrentUser = (req, res, next) => {
 // };
 
 const login = (req, res, next) => {
+  console.log("login ran: ");
   const { username, password } = req.body;
   return User.findUserByCredentials(username, password)
     .then((user) => {
+      console.log("login .then ran: ");
       const token = createJWT(user._id);
       res.send({ token });
     })

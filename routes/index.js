@@ -9,7 +9,9 @@ const {
 } = require("../middlewares/validation");
 const NotFoundError = require("../errors/not-found-error");
 
-router.post("/signin", validateLoginAttempt, login);
+router.post("/signin", 
+  // validateLoginAttempt,
+   login);
 router.post("/signup", 
   // validateNewUserData,
    createUser);
