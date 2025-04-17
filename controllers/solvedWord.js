@@ -16,4 +16,4 @@ const createNewSolvedWord = (req, res, next) => {
 };
 
 
-module.exports = { createNewSolvedWord, getSolvedWords};
+module.exports = { createNewSolvedWord };

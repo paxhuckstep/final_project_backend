@@ -6,7 +6,7 @@ const {
   createNewSolvedWord,
 } = require("../controllers/solvedWord");
 
-router.get("/", getSolvedWords);
+// router.get("/", getSolvedWords);
 router.put(":userId/:word",
   //  auth, validateWord, 
    createNewSolvedWord);
