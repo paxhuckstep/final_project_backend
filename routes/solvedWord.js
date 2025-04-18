@@ -1,14 +1,15 @@
 const router = require("express").Router();
 
-// const { auth } = require("../middlewares/auth");
+const { auth } = require("../middlewares/auth");
 
 const {
-  createNewSolvedWord,
+  addNewSolvedWord,
 } = require("../controllers/solvedWord");
 
 // router.get("/", getSolvedWords);
-router.put(":userId/:word",
-  //  auth, validateWord, 
-   createNewSolvedWord);
+router.put("/:word",
+   auth,
+  //  validateWord, 
+   addNewSolvedWord);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const ForbiddenError = require("../errors/forbidden-error");
+// const ForbiddenError = require("../errors/forbidden-error");
 // const Item = require("../models/solvedWord");
 const Score = require("../models/highScore");
 const User = require("../models/user");
