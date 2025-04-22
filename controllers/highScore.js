@@ -7,7 +7,7 @@ const { handleError } = require("../utils/errors");
 const setNewHighScore = (req, res, next) => {
   const { _id } = req.user;
   const { score } = req.params;
-  console.log(score, " req.body: ", req.body, "req.params: ", req.params);
+  // console.log(score, " req.body: ", req.body, "req.params: ", req.params);
 
   User.findByIdAndUpdate(
     _id,
@@ -20,23 +20,7 @@ const setNewHighScore = (req, res, next) => {
     .catch((err) => {
       handleError(err, res, next);
     });
-  // const { score } = req.body;
-  // const owner = req.user._id;
-
-  // { score, owner }
-
-  // Item.create({ score, owner })
-  //   .then((item) => {
-  //     // again do we send back a whole new userData ????
-  //     res.send({ data: item });
-  //   })
-  //   .catch((err) => {
-  //     handleError(err, res, next);
-  //   });
 };
 
-// const updateUser = (req, res, next) => {
-
-// };
 
 module.exports = { setNewHighScore };
