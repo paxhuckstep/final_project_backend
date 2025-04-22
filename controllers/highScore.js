@@ -7,6 +7,10 @@ const { handleError } = require("../utils/errors");
 const setNewHighScore = (req, res, next) => {
   const { _id } = req.user;
   const { score } = req.params;
+
+
+
+ 
   // console.log(score, " req.body: ", req.body, "req.params: ", req.params);
 
   User.findByIdAndUpdate(
