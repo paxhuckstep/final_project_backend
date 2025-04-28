@@ -12,15 +12,14 @@ const NotFoundError = require("../errors/not-found-error");
 
 router.post(
   "/signin",
-  // validateLoginAttempt,
+  validateLoginAttempt,
   login
 );
 router.post(
   "/signup",
-  // validateNewUserData,
+  validateNewUserData,
   createUser
 );
-// router.use("/highscore", clothingItem);
 router.use("/solvedword", solvedWordRouter);
 router.use("/highscore", highScoreRouter);
 router.use("/users", userRouter);
