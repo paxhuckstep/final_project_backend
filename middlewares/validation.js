@@ -48,11 +48,11 @@ const validateSolvedWord = celebrate({
 
 const validateLoginAttempt = celebrate({
   body: Joi.object().keys({
-    username: Joi.string().required().min(3).messages({
+    username: Joi.string().required().min(2).messages({
       "string.empty": "the email field is required",
       "string.email": "A valid email must be submitted",
     }),
-    password: Joi.string().required().min(3).messages({
+    password: Joi.string().required().min(2).messages({
       "string.empty": "password is required",
       "string.min": "password must be at least 8 characters long",
     }),
