@@ -7,7 +7,7 @@ const getLeaderboard = (req, res, next) => {
     .sort({ [highScoreName]: -1 })
     .limit(10)
     .then((leaderboardsData) => {
-      console.log(leaderboardsData);
+      // console.log(leaderboardsData);
       res.send(leaderboardsData);
     })
     .catch((err) => {

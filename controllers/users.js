@@ -5,7 +5,7 @@ const { handleError } = require("../utils/errors");
 const ConflictError = require("../errors/conflict-error");
 
 const createUser = (req, res, next) => {
-  console.log("creaeteUser ran");
+  // console.log("creaeteUser ran");
   const { username, password } = req.body;
   User.findOne({ username })
     .then((existingUser) => {
@@ -63,7 +63,7 @@ const getCurrentUser = (req, res, next) => {
 // };
 
 const login = (req, res, next) => {
-  console.log("login ran: ");
+  // console.log("login ran: ");
   const { username, password } = req.body;
   return User.findUserByCredentials(username, password)
     .then((user) => {
