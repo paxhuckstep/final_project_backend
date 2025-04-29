@@ -24,6 +24,13 @@ const { PORT = 4201 } = process.env;
 
 // app.use(cors());
 
+app.use(cors({
+  origin: '*',  // temporarily allow all origins for testing
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+
 app.use(express.json());
 
 app.use("/", mainRouter);
