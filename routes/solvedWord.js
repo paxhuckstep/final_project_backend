@@ -2,14 +2,10 @@ const router = require("express").Router();
 
 const { auth } = require("../middlewares/auth");
 
-const {
-  addNewSolvedWord,
-} = require("../controllers/solvedWord");
+const { validateSolvedWord } = require("../middlewares/validation");
 
-// router.get("/", getSolvedWords);
-router.put("/:word",
-   auth,
-  //  validateWord, 
-   addNewSolvedWord);
+const { addNewSolvedWord } = require("../controllers/solvedWord");
+
+router.put("/:word", auth, validateSolvedWord, addNewSolvedWord);
 
 module.exports = router;

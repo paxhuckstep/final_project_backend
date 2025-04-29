@@ -38,6 +38,14 @@ const validateUrl = (value, helpers) => {
 //   }),
 // });
 
+const validateSolvedWord = celebrate({
+  params: Joi.object().keys({
+    word: Joi.string().pattern(/^[a-z]+$/).messages({
+      "string.pattern": "correct words only contains letters and they are all lowercase",
+    })
+  })
+})
+
 const validateLoginAttempt = celebrate({
   body: Joi.object().keys({
     username: Joi.string().required().min(3).messages({
@@ -66,6 +74,23 @@ const validateNewUserData = celebrate({
   }),
 });
 
+const validateHighScore = celebrate({
+  params: Joi.object().keys({
+    score: Joi.string().pattern(/^\d+$/).messages({
+      "string.pattern": "score must be a string that can convert to a positive intiger",
+    })
+  })
+})
+
+const validateLeaderboard = celebrate({
+  params: Joi.object().keys({
+    highScoreName: Joi.string().pattern(/^[a-z]+$/).messages({
+      "string.pattern": "highScoreName only contains letters and they are all lowercase",
+    })
+  })
+})
+
+
 // const validateUpdateUserData = celebrate({
 //   body: Joi.object().keys({
 //     name: Joi.string().required().min(2).max(30).messages({
@@ -86,6 +111,9 @@ module.exports = {
   // validateItemId,
   validateLoginAttempt,
   validateNewUserData,
+  validateSolvedWord,
+  validateHighScore,
+  validateLeaderboard
   // validateUpdateUserData,
 };
 
