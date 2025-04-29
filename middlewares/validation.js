@@ -84,8 +84,8 @@ const validateHighScore = celebrate({
 
 const validateLeaderboard = celebrate({
   params: Joi.object().keys({
-    highScoreName: Joi.string().pattern(/^[a-z]+$/).messages({
-      "string.pattern": "highScoreName only contains letters and they are all lowercase",
+    highScoreName: Joi.string().pattern(/^[A-Za-z]+$/).messages({
+      "string.pattern": "highScoreName only contains letters",
     })
   })
 })
