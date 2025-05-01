@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const mainRouter = require("./routes/index");
-console.log("app.js running")
+console.log("app.js running");
 
 const app = express();
 
@@ -37,6 +37,8 @@ app.use("/", mainRouter);
 
 const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/nerdle_db";
+
+console.log(process.env);
 
 mongoose
   // .connect("mongodb://127.0.0.1:27017/nerdle_db")
