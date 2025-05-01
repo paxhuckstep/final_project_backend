@@ -36,7 +36,11 @@ app.use(express.json());
 app.use("/", mainRouter);
 
 const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/nerdle_db";
+  process.env.NODE_ENV === "production"
+    ? "mongodb://shortline.proxy.rlwy.net:21074/nerdle_db"
+    : "mongodb://127.0.0.1:27017/nerdle_db";
+//const MONGODB_URI =
+//  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/nerdle_db";
 
 console.log(process.env);
 
