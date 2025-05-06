@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  sportsHighScore: {
+    type: Number,
+    default: 0,
+  },
 });
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(
