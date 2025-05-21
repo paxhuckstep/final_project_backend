@@ -4,7 +4,7 @@ const { setNewHighScore } = require("../controllers/highScore");
 const { validateHighScore } = require("../middlewares/validation");
 
 router.put(
-  "/:score",
+  "/:score/:highScoreName",
   auth,
   validateHighScore,
   setNewHighScore

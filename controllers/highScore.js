@@ -1,15 +1,14 @@
-
 const User = require("../models/user");
 const { handleError } = require("../utils/errors");
 
-
 const setNewHighScore = (req, res, next) => {
   const { _id } = req.user;
-  const { score } = req.params;
+  const { score, highScoreName } = req.params;
+  // console.log("setNewHighScore ran, ", score, highScoreName)
 
   User.findByIdAndUpdate(
     _id,
-    { pokemonHighScore: score },
+    { [highScoreName]: score },
     { new: true, runValidators: true }
   )
     .then((user) => {

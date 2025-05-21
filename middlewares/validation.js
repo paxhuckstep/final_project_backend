@@ -40,11 +40,14 @@ const validateUrl = (value, helpers) => {
 
 const validateSolvedWord = celebrate({
   params: Joi.object().keys({
-    word: Joi.string().pattern(/^[a-z]+$/).messages({
-      "string.pattern": "correct words only contains letters and they are all lowercase",
-    })
-  })
-})
+    word: Joi.string()
+      .pattern(/^[a-z]+$/)
+      .messages({
+        "string.pattern":
+          "correct words only contains letters and they are all lowercase",
+      }),
+  }),
+});
 
 const validateLoginAttempt = celebrate({
   body: Joi.object().keys({
@@ -77,19 +80,26 @@ const validateNewUserData = celebrate({
 const validateHighScore = celebrate({
   params: Joi.object().keys({
     score: Joi.string().pattern(/^\d+$/).messages({
-      "string.pattern": "score must be a string that can convert to a positive intiger",
-    })
-  })
-})
+      "string.pattern":
+        "score must be a string that can convert to a positive intiger",
+    }),
+    highScoreName: Joi.string()
+      .pattern(/^[a-zA-Z]+$/)
+      .messages({
+        "string.pattern": "highScoreName must be english letters only",
+      }),
+  }),
+});
 
 const validateLeaderboard = celebrate({
   params: Joi.object().keys({
-    highScoreName: Joi.string().pattern(/^[A-Za-z]+$/).messages({
-      "string.pattern": "highScoreName only contains letters",
-    })
-  })
-})
-
+    highScoreName: Joi.string()
+      .pattern(/^[A-Za-z]+$/)
+      .messages({
+        "string.pattern": "highScoreName only contains letters",
+      }),
+  }),
+});
 
 // const validateUpdateUserData = celebrate({
 //   body: Joi.object().keys({
@@ -105,7 +115,6 @@ const validateLeaderboard = celebrate({
 //   }),
 // });
 
-
 module.exports = {
   // validateCardBody,
   // validateItemId,
@@ -113,7 +122,7 @@ module.exports = {
   validateNewUserData,
   validateSolvedWord,
   validateHighScore,
-  validateLeaderboard
+  validateLeaderboard,
   // validateUpdateUserData,
 };
 
