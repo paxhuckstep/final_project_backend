@@ -20,7 +20,7 @@ const { PORT = 4201 } = process.env;
 
 app.use(
   cors({
-    origin: ["http://localhost:3001", "https://paxwordle.netlify.app"],
+    origin: ["http://localhost:3000", "https://paxwordle.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Accept"],
     credentials: true,
