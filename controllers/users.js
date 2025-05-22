@@ -10,7 +10,7 @@ const createUser = (req, res, next) => {
   User.findOne({ username })
     .then((existingUser) => {
       if (existingUser) {
-        return next(new ConflictError("E-mail unavailable"));
+        return next(new ConflictError("Username unavailable"));
       }
       return bcrypt.hash(password, 8).then((hashedPassword) => {
         User.create({ username, password: hashedPassword })
@@ -44,23 +44,6 @@ const getCurrentUser = (req, res, next) => {
       handleError(err, res, next);
     });
 };
-
-// const updateUser = (req, res, next) => {
-//   const { _id } = req.user;
-//   const { newName, newAvatar } = req.body;
-
-//   User.findByIdAndUpdate(
-//     _id,
-//     { name: newName, avatar: newAvatar },
-//     { new: true, runValidators: true }
-//   )
-//     .then((user) => {
-//       res.send(user);
-//     })
-//     .catch((err) => {
-//       handleError(err, res, next);
-//     });
-// };
 
 const login = (req, res, next) => {
   // console.log("login ran: ");

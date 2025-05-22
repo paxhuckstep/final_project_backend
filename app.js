@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const mainRouter = require("./routes/index");
+const { errorHandler } = require("./middlewares/error-handler");
+
 console.log("app.js running");
 
 const app = express();
@@ -18,7 +20,7 @@ const { PORT = 4201 } = process.env;
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://paxwordle.netlify.app"],
+    origin: ["http://localhost:3001", "https://paxwordle.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Accept"],
     credentials: true,
@@ -35,12 +37,9 @@ app.use(
 app.use(express.json());
 app.use("/", mainRouter);
 
+
 const MONGODB_URI =
-  process.env.NODE_ENV === "production"
-    ? "mongodb://shortline.proxy.rlwy.net:21074/nerdle_db"
-    : "mongodb://127.0.0.1:27017/nerdle_db";
-//const MONGODB_URI =
-//  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/nerdle_db";
+ process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/nerdle_db";
 
 console.log(process.env);
 
@@ -53,6 +52,7 @@ mongoose
   .catch((e) => {
     console.error(e);
   });
+ app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
