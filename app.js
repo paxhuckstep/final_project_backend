@@ -1,10 +1,12 @@
+const dotenv = require("dotenv")
 const express = require("express");
 const mongoose = require("mongoose");
 const mainRouter = require("./routes/index");
 const { errorHandler } = require("./middlewares/error-handler");
+const { MongoClient } = require("mongodb");
 
 console.log("app.js running");
-
+dotenv.config()
 const app = express();
 
 const cors = require("cors");
@@ -37,22 +39,42 @@ app.use(
 app.use(express.json());
 app.use("/", mainRouter);
 
+// const MONGODB_URI =
+//  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/nerdle_db";
 
-const MONGODB_URI =
- process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/nerdle_db";
-
-console.log(process.env);
+// console.log(process.env);
+// Replace the uri string with your connection string
+const uri = process.env.MONGODB_URI;
 
 mongoose
   // .connect("mongodb://127.0.0.1:27017/nerdle_db")
-  .connect(MONGODB_URI)
+  .connect(uri)
   .then(() => {
     console.log("Connected to DB");
   })
   .catch((e) => {
     console.error(e);
   });
- app.use(errorHandler);
+
+// const client = new MongoClient(uri);
+
+// async function run() {
+//   try {
+//     const database = client.db('WordleDb');
+//     // const movies = database.collection('movies');
+
+//     // Queries for a movie that has a title value of 'Back to the Future'
+//     // const query = { title: 'Back to the Future' };
+//     // const movie = await movies.findOne(query);
+
+//     console.log(movie);
+//   } finally {
+//     await client.close();
+//   }
+// }
+// run().catch(console.dir);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
